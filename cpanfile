@@ -1,1 +1,5 @@
-requires "Riji", "v0.9.7";
+requires "Riji";
+requires 'Daiku';
+requires 'Path::Tiny';
+requires 'Crypt::CBC';
+requires 'Crypt::Blowfish';
