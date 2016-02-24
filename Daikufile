@@ -3,6 +3,7 @@ use Path::Tiny;
 use Crypt::CBC;
 use MIME::Base64;
 use Git::Repository;
+use Plack::Runner;
 
 my $config = require 'etc/config.pl';
 
@@ -11,6 +12,32 @@ my $CIPHER = Crypt::CBC->new(
     -cipher => $config->{cipher}
 );
 
+
+namespace site => sub {
+
+    desc 'サイトをビルド';
+    task build => sub {
+        system 'riji publish';
+    };  
+
+    desc 'ビルドしたサイトを表示';
+    task preview => sub {
+        my @options = (
+            '-MPlack::App::Directory',
+            '-e',
+            'Plack::App::Directory->new({root => "./blog"})'
+        );
+        my $runner = Plack::Runner->new;
+        $runner->parse_options(@options);
+        $runner->run;
+    };  
+
+    desc '開発サーバ起動';
+    task server => sub {
+        system 'riji server';
+    };  
+
+};
 
 
 namespace info => sub {
