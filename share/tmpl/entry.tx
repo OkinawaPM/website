@@ -5,6 +5,7 @@
 : }
 
 : around content -> {
+<!--
 <nav>
   <ul class="paginate">
   : if $entry.prev() {
@@ -15,6 +16,7 @@
   : }
   </ul>
 </nav>
+-->
 
 <article>
   : if $entry.tags().size() {
@@ -27,8 +29,10 @@
     </ul>
   </aside>
   : }
-  <div class="entry">
-    <: $entry.html_body() | mark_raw :>
+  <div class="pure-table">
+    <h2><: $entry.title :></h2>
+    <time pubdate><: $entry.published_at().strftime('%Y-%m-%d %H:%M') :></time>
+    <: $entry.html_body_without_title() | mark_raw :>
   </div>
   <dl class="meta">
       <dt class="author">created by</dt>
