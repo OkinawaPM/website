@@ -1,0 +1,37 @@
+
+use Path::Tiny;
+use Crypt::CBC;
+use MIME::Base64;
+use Git::Repository;
+
+my $config = require 'etc/config.pl';
+
+my $CIPHER = Crypt::CBC->new(
+    -key    => $config->{key},
+    -cipher => $config->{cipher}
+);
+
+
+
+namespace info => sub {
+    my $info_file = sub { return (sprintf "./tmp/info.%s", shift); };
+
+    desc 'アカウント情報表示';
+    task view => sub {
+        unless (-e $info_file->('crypted')) {
+            Git::Repository->run(clone => $config->{gist} => 'tmp');
+        }
+        print $CIPHER->decrypt(decode_base64(path($info_file->('crypted'))->slurp));
+    };  
+
+    desc 'アカウント情報暗号化保存';
+    task create => sub {
+        if (-e $info_file->('crypted')) {
+            unlink $info_file->('crypted');
+        }
+        my $fh = path($info_file->('crypted'))->filehandle({ locked => 1 }, '>>');
+        print $fh encode_base64($CIPHER->encrypt(path($info_file->('txt'))->slurp));
+        close $fh;
+    };  
+
+};

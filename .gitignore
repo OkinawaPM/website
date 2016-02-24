@@ -3,4 +3,5 @@
 local/
 *~
 *.swp
-docs/info.txt
+tmp/
+etc/config.pl
