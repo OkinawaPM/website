@@ -1,4 +1,4 @@
-Okinawa Perl Mongers (Okinawa.pm) Webサイトビルドツール
+Okinawa.pm Webサイトビルドツール
 ======================================================
 
 環境構築
