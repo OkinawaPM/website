@@ -12,7 +12,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
   <script>$(function() { 
        var selected_menu = location.href.split("/")[3].split('.')[0];
-       if (!selected_menu) {
+       if (!selected_menu || selected_menu == 'index') {
            selected_menu = 'home';
        }
        $('.pure-menu-item').each(function(index) { 
