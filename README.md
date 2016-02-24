@@ -7,3 +7,15 @@ Okinawa Perl Mongers (Okinawa.pm) Webサイトビルドツール
     $ carton install
 
 
+Webサーバ起動(Riji)
+--------
+
+    $ carton exec -- riji server
+
+
+タスク一覧
+--------
+
+    $ carton exec -- daiku -T
+
+
