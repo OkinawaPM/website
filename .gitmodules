@@ -1,0 +1,3 @@
+[submodule "blog"]
+	path = blog
+	url = git@github.com:OkinawaPM/OkinawaPM.github.io.git
