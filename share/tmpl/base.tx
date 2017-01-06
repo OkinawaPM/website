@@ -44,8 +44,8 @@
     <div class="container">
 
       <div class="blog-header">
-        <h1 class="blog-title">Yomitan Perl Mongers</h1>
-        <p class="lead blog-description">沖縄県中部あたりを中心とした、Perlユーザのグループです。</p>
+        <h1 class="blog-title">Okinawa Perl Mongers</h1>
+        <p class="lead blog-description">沖縄県本島を中心とした、Perlユーザのグループです。</p>
       </div>
 
       <div class="row">
@@ -69,12 +69,12 @@
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
-            <h4>Yomitan.pm</h4>
+            <h4>Okinawa.pm</h4>
             <p>
-            沖縄県(中部)を中心とするPerl ユーザのコミュニティ形成を目指す非営利の団体です。
+            沖縄県本島を中心とするPerl ユーザのコミュニティ形成を目指す非営利の団体です。
             主な活動内容はプログラミング言語 Perl に関係するメンバー主催の勉強会やインターネット上での啓蒙活動や情報交換です。
             どなたでも無料で参加できます。連絡先/情報発信は、
-            twitter @yomitanpm
+            <a href="https://okinawapm.connpass.com/">https://okinawapm.connpass.com/</a>
             です。
             </p>
           </div>

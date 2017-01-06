@@ -1,7 +1,7 @@
 Okinawa.pm Webサイトビルドツール
 ======================================================
 
-環境構築
+環境構築 / use v5.24
 --------
 
     $ git clone git@github.com:OkinawaPM/website.git --recursive
