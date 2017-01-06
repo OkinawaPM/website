@@ -6,19 +6,9 @@ Okinawa.pm Webサイトビルドツール
 
     $ git clone git@github.com:OkinawaPM/website.git --recursive
     $ cd website
+    $ git submodule update --init
+    $ git submodule foreach git checkout master
     $ carton install --deployment
-
-
-開発時Webサーバ起動 / Riji
---------
-
-    $ carton exec -- riji server
-
-
-公開時Webサイト静的ビルド
---------
-
-    $ carton exec -- riji publish 
 
 
 タスク一覧
