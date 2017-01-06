@@ -1,26 +1,20 @@
 : cascade base
 : around content -> {
+<!--
+<nav>
+  <ul>
+    <li><a href="<: '/archives.html' | uri_for :>">Archives</a></li>
+  </ul>
+</nav>
+-->
+
 
 :   for $blog.entries(limit => 1) -> $entry {
-<article>
-<div class="pure-table">
-  <h2><a href="<: $entry.site_path | uri_for :>"><: $entry.title :></a></h2>
-<time pubdate><: $entry.published_at().strftime('%Y-%m-%d %H:%M') :></time>
-  <: $entry.html_body_without_title() | mark_raw :>
-</div>
-</article>
-:   }
-
-:   if $blog.tags().size() {
-<aside class="tags">
-  <h1>Tags</h1>
-  <ul class="tags">
-  :     for $blog.tags() -> $tag {
-  <li><a href="<: $tag.site_path | uri_for :>"><: $tag.name :>(<: $tag.count :>)</a></li>
-  :      }
-  </ul>
-</aside>
+            <h2 class="blog-post-title"><a href="<: $entry.site_path | uri_for :>"><: $entry.title :></a></h2>
+            <p class="blog-post-meta"><: $entry.published_at().strftime('%Y-%m-%d %H:%M') :> <a href="#"><: $blog.author :></a></p>
+            <p>
+            <: $entry.html_body_without_title() | mark_raw :>
+            </p>
+            <hr>
 :   }
 : }
-
-

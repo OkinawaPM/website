@@ -1,68 +1,136 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<html lang="ja">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    -->
   <link rel="alternate" type="application/atom+xml" title="Atom" href="<: '/atom.xml' | uri_for :>">
+  
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/blog.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+ 
   <title>
     <: block title -> { :><: $blog.title :><: } :>
   </title>
-  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-  <link rel="stylesheet" href="<: '/static/css/base.css' :>">
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-  <script>$(function() { 
-       var selected_menu = location.href.split("/")[3].split('.')[0];
-       if (!selected_menu || selected_menu == 'index') {
-           selected_menu = 'home';
-       }
-       $('.pure-menu-item').each(function(index) { 
-            if ($(this).text().match(new RegExp(selected_menu, 'i'))) {
-                $(this).addClass('pure-menu-active'); 
-            }
-       });
-    });
-  </script>
 </head>
-
 <body>
-  <header>
-    <h1 class="pure-menu-heading">
-        <a href="<: '/' | uri_for :>">
-            <img src="<: '/static/images/perl-onion.png' | uri_for :>" style="width:70px;padding:5px;vertical-align: middle;" class="logo" />
-        <: $blog.title :>
-        </a>
-    </h1>
-  </header>
 
-  <section>
-    <div class="pure-menu">
-      <ul class="pure-menu-list">
-        <li class="pure-menu-item">
-          <a href="<: '/' | uri_for :>" class="pure-menu-link">Home</a>
-        </li>
-        <li class="pure-menu-item">
-          <a href="<: '/archives.html' | uri_for :>" class="pure-menu-link">Archives</a>
-        </li>
-        <li class="pure-menu-item">
-          <a href="<: '/organizers.html' | uri_for :>" class="pure-menu-link">Organizers</a>
-        </li>
-      </ul>
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item active" href="/">Home</a>
+          <a class="blog-nav-item" href="/archives.html">Archives</a>
+        </nav>
+      </div>
     </div>
-  </section>
 
-  <section>
-  : block content -> { }
-  </section>
+    <div class="container">
 
-  <footer>
-    <h5 class="pure-menu-heading">
-        <a href="https://www.perl.org/">
-            <img src="<: '/static/images/powered_by_perl.gif' | uri_for :>" style="width:50px;vertical-align: middle;" class="logo" />
-        </a>
-        and <a href="https://github.com/Songmu/p5-Riji">Riji - Simple, git based blog tool</a>
-        </a>
-    </h5>
-  </footer>
+      <div class="blog-header">
+        <h1 class="blog-title">Yomitan Perl Mongers</h1>
+        <p class="lead blog-description">沖縄県中部あたりを中心とした、Perlユーザのグループです。</p>
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+          : block content -> { }
+          </div><!-- /.blog-post -->
+
+          <ul class="pager">
+            : if $entry.prev() {
+            <li><a href="<: $entry.prev.site_path | uri_for :>">Previous</a></li>
+            : }
+            : if $entry.next() {
+            <li><a href="<: $entry.next.site_path | uri_for :>">Next</a></li>
+            : }
+          </ul>
+
+        </div><!-- /.blog-main -->
+
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>Yomitan.pm</h4>
+            <p>
+            沖縄県(中部)を中心とするPerl ユーザのコミュニティ形成を目指す非営利の団体です。
+            主な活動内容はプログラミング言語 Perl に関係するメンバー主催の勉強会やインターネット上での啓蒙活動や情報交換です。
+            どなたでも無料で参加できます。連絡先/情報発信は、
+            twitter @yomitanpm
+            です。
+            </p>
+          </div>
+          <div class="sidebar-module">
+            <h4>Archives</h4>
+            <ol class="list-unstyled">
+                : for $blog.entries() -> $entry {
+                <li><time><: $entry.published_at.strftime('%Y-%m-%d') :></time> <a href="<: $entry.site_path() | uri_for :>"> <: $entry.title :></a></li>
+                : }
+                <!--
+              <li><a href="#">January 2014</a></li>
+              <li><a href="#">December 2013</a></li>
+              <li><a href="#">November 2013</a></li>
+              <li><a href="#">October 2013</a></li>
+              <li><a href="#">September 2013</a></li>
+              <li><a href="#">August 2013</a></li>
+              <li><a href="#">July 2013</a></li>
+              <li><a href="#">June 2013</a></li>
+              <li><a href="#">May 2013</a></li>
+              <li><a href="#">April 2013</a></li>
+              <li><a href="#">March 2013</a></li>
+              <li><a href="#">February 2013</a></li>
+              -->
+            </ol>
+          </div>
+          <div class="sidebar-module">
+            <h4>Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">GitHub</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Facebook</a></li>
+            </ol>
+          </div>
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <div class="blog-footer">
+      <p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <!--
+    <script src="assets/js/docs.min.js"></script>
+    -->
+ 
 
 </body>
 </html>
