@@ -16,4 +16,16 @@ Okinawa.pm Webサイトビルドツール
 
     $ carton exec -- daiku -T
 
+記事の確認
+--------
 
+    $ git add article/entry/someday.md
+    $ git commit -m 何かしらのコミットメッセージ
+    $ daiku site:build    # サイトをビルド
+    $ daiku site:preview  # ビルドしたサイトを表示
+
+これは少し違うなと感じた場合
+    
+    $ git reset 'HEAD^'
+
+を行うことで直前のコミットを取消せます！
