@@ -5,7 +5,7 @@ use MIME::Base64;
 use Git::Repository;
 use Plack::Runner;
 
-my $config = require 'etc/config.pl';
+my $config = require './etc/config.pl';
 
 my $CIPHER = Crypt::CBC->new(
     -key    => $config->{key},
